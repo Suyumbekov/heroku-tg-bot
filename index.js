@@ -7,33 +7,10 @@ var token = "1569313818:AAFWE5_3WIfEnlFA0RG8-w25r7_kkO81M7s";
 // Подробнее: https://core.telegram.org/bots/api#getupdates
 var bot = new TelegramBot(token, { polling: true });
 
-// bot.onText(/напомни (.+) в (.+)/, function (msg, match) {
-//   var userId = msg.from.id;
-//   var text = match[1];
-//   var time = match[2];
-
-//   notes.push({ uid: userId, time: time, text: text });
-
-//   bot.sendMessage(userId, "Отлично! Я обязательно напомню, если не сдохну :)");
-// });
-
-// setInterval(function () {
-//   for (var i = 0; i < notes.length; i++) {
-//     const curDate = new Date().getHours() + ":" + new Date().getMinutes();
-//     if (notes[i]["time"] === curDate) {
-//       bot.sendMessage(
-//         notes[i]["uid"],
-//         "Напоминаю, что вы должны: " + notes[i]["text"] + " сейчас."
-//       );
-//       notes.splice(i, 1);
-//     }
-//   }
-// }, 1000);
 bot.on("polling_error", console.log);
 
 bot.on("message", function (message) {
   if (message.new_chat_members != undefined) {
-    console.log(message.new_chat_member.is_bot);
     if (!message.new_chat_member.is_bot) {
       if (message.new_chat_member.last_name)
         bot.sendMessage(
