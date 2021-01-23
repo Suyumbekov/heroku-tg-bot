@@ -2,7 +2,7 @@
 var TelegramBot = require("node-telegram-bot-api");
 
 // Устанавливаем токен, который выдавал нам бот
-var token = "1569313818:AAFWE5_3WIfEnlFA0RG8-w25r7_kkO81M7s";
+var token = "1569313818:AAHm65XxYkgWDWipQMt0mf6VDUp4PZLICY4";
 // Включить опрос сервера. Бот должен обращаться к серверу Telegram, чтобы получать актуальную информацию
 // Подробнее: https://core.telegram.org/bots/api#getupdates
 var bot = new TelegramBot(token, { polling: true });
