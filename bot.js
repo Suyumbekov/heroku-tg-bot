@@ -9,8 +9,8 @@ var token = "1569313818:AAHm65XxYkgWDWipQMt0mf6VDUp4PZLICY4";
 const options = {
   webHook: {
     port: 443,
-    key: key.pem, // Path to file with PEM private key
-    cert: crt.pem // Path to file with PEM certificate
+    key: "./key.pem", // Path to file with PEM private key
+    cert: "./crt.pem" // Path to file with PEM certificate
   }
 };
 
