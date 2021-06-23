@@ -8,20 +8,26 @@ var token = "1569313818:AAHm65XxYkgWDWipQMt0mf6VDUp4PZLICY4";
 
 const options = {
   webHook: {
-    port: 443,
-    key: "./key.pem", // Path to file with PEM private key
-    cert: "./crt.pem" // Path to file with PEM certificate
+    // Port to which you should bind is assigned to $PORT variable
+    // See: https://devcenter.heroku.com/articles/dynos#local-environment-variables
+    port: process.env.PORT
+    // you do NOT need to set up certificates since Heroku provides
+    // the SSL certs already (https://<app-name>.herokuapp.com)
+    // Also no need to pass IP because on Heroku you need to bind to 0.0.0.0
   }
 };
-
-const url = 'https://<PUBLIC-URL>';
+// Heroku routes from port :443 to $PORT
+// Add URL of your app to env variable or enable Dyno Metadata
+// to get this automatically
+// See: https://devcenter.heroku.com/articles/dyno-metadata
+const url = process.env.APP_URL || 'https://<app-name>.herokuapp.com:443';
 const bot = new TelegramBot(token, options);
 
 
 // This informs the Telegram servers of the new webhook.
-bot.setWebHook(`${url}/bot${token}`, {
-  certificate: options.webHook.cert,
-});
+// Note: we do not need to pass in the cert, as it already provided
+bot.setWebHook(`${url}/bot${token}`);
+
 
 bot.on("polling_error", console.log);
 
