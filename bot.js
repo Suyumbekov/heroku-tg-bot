@@ -1,27 +1,18 @@
 // Подключаем библиотеку для работы с Telegram API в переменную
 var TelegramBot = require("node-telegram-bot-api");
+const express = require('express');
 
 // Устанавливаем токен, который выдавал нам бот
 var token = "1569313818:AAHm65XxYkgWDWipQMt0mf6VDUp4PZLICY4";
 // Включить опрос сервера. Бот должен обращаться к серверу Telegram, чтобы получать актуальную информацию
 // Подробнее: https://core.telegram.org/bots/api#getupdates
 
-const options = {
-  webHook: {
-    // Port to which you should bind is assigned to $PORT variable
-    // See: https://devcenter.heroku.com/articles/dynos#local-environment-variables
-    port: process.env.PORT
-    // you do NOT need to set up certificates since Heroku provides
-    // the SSL certs already (https://<app-name>.herokuapp.com)
-    // Also no need to pass IP because on Heroku you need to bind to 0.0.0.0
-  }
-};
-// Heroku routes from port :443 to $PORT
+
 // Add URL of your app to env variable or enable Dyno Metadata
 // to get this automatically
 // See: https://devcenter.heroku.com/articles/dyno-metadata
-const url = process.env.APP_URL || 'https://<app-name>.herokuapp.com:443';
-const bot = new TelegramBot(token, options);
+const url = process.env.APP_URL || 'https://<PUBLIC-URL>';
+const bot = new TelegramBot(token);
 
 
 // This informs the Telegram servers of the new webhook.
@@ -29,7 +20,21 @@ const bot = new TelegramBot(token, options);
 bot.setWebHook(`${url}/bot${token}`);
 
 
-bot.on("polling_error", console.log);
+const app = express();
+// parse the updates to JSON
+
+app.use(express.json());
+
+// We are receiving updates at the route below!
+app.post(`/bot${TOKEN}`, (req, res) => {
+  bot.processUpdate(req.body);
+  res.sendStatus(200);
+});
+
+// Start Express Server
+app.listen(port, () => {
+  console.log(`Express server is listening on ${port}`);
+});
 
 bot.on("message", function (message) {
   if (message.new_chat_members != undefined) {
