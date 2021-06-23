@@ -15,11 +15,11 @@ const options = {
 };
 
 const url = 'https://<PUBLIC-URL>';
-const bot = new TelegramBot(TOKEN, options);
+const bot = new TelegramBot(token, options);
 
 
 // This informs the Telegram servers of the new webhook.
-bot.setWebHook(`${url}/bot${TOKEN}`, {
+bot.setWebHook(`${url}/bot${token}`, {
   certificate: options.webHook.cert,
 });
 
