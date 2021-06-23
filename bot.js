@@ -5,23 +5,7 @@ var TelegramBot = require("node-telegram-bot-api");
 var token = "1569313818:AAHm65XxYkgWDWipQMt0mf6VDUp4PZLICY4";
 // Включить опрос сервера. Бот должен обращаться к серверу Telegram, чтобы получать актуальную информацию
 // Подробнее: https://core.telegram.org/bots/api#getupdates
-
-const options = {
-  webHook: {
-    port: 443,
-    key: "./key.pem", // Path to file with PEM private key
-    cert: "./crt.pem" // Path to file with PEM certificate
-  }
-};
-
-const url = 'https://<PUBLIC-URL>';
-const bot = new TelegramBot(token, options);
-
-
-// This informs the Telegram servers of the new webhook.
-bot.setWebHook(`${url}/bot${token}`, {
-  certificate: options.webHook.cert,
-});
+var bot = new TelegramBot(token, { polling: true });
 
 bot.on("polling_error", console.log);
 
