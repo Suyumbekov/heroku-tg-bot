@@ -7,6 +7,8 @@ var token = "1569313818:AAHm65XxYkgWDWipQMt0mf6VDUp4PZLICY4";
 // Подробнее: https://core.telegram.org/bots/api#getupdates
 var bot = new TelegramBot(token, { polling: true });
 
+bot.on("polling_error", console.log);
+
 bot.on("message", function (message) {
   if (message.new_chat_members != undefined) {
     if (!message.new_chat_member.is_bot) {
