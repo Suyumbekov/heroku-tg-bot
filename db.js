@@ -21,8 +21,8 @@ client.query('SELECT * From groups;', (err, res) => {
   client.query('Select name from groups',(err,res)=>{
     if(err) throw err;
     console.log(res.JSON.parse());
-    return res.JSON.parse();
     client.end();
+    return res.JSON.parse();
     
   })
 };
