@@ -16,3 +16,11 @@ client.query('SELECT * From groups;', (err, res) => {
   }
   client.end();
 });
+
+exports.queryRead = function(){
+  client.query('Select name from groups',(err,res)=>{
+    if(err) throw err;
+    console.log(res.JSON.parse());
+    client.end();
+  })
+};

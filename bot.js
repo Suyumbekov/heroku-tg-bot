@@ -1,14 +1,21 @@
 // Подключаем библиотеку для работы с Telegram API в переменную
 var TelegramBot = require("node-telegram-bot-api");
 
+let db = require('./db');
 // Устанавливаем токен, который выдавал нам бот
 var token = "1569313818:AAHm65XxYkgWDWipQMt0mf6VDUp4PZLICY4";
 // Включить опрос сервера. Бот должен обращаться к серверу Telegram, чтобы получать актуальную информацию
 // Подробнее: https://core.telegram.org/bots/api#getupdates
 var bot = new TelegramBot(token, { polling: true });
 
+db.queryRead();
 bot.on("polling_error", console.log);
 
+bot.onText(/\/start/, (msg) => {
+
+  console.log(msg);
+  
+  });
 bot.on("message", function (message) {
   if (message.new_chat_members != undefined) {
     if (!message.new_chat_member.is_bot) {
