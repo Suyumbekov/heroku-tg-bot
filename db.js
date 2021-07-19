@@ -25,12 +25,12 @@ client.query('SELECT * From groups;', (err, res) => {
     return res.JSON.parse();
   })
 };
- function queryAdd(val){
-  client.query(`INSERT INTO groups(name) VALUES(${val})`,(err,res)=>{
-    if(err) throw err;
-    console.log('new group added');
-    client.end();
-  })
-};
-module.exports.queryAdd = queryAdd;
+//  function queryAdd(val){
+//   client.query(`INSERT INTO groups(name) VALUES(${val})`,(err,res)=>{
+//     if(err) throw err;
+//     console.log('new group added');
+//     client.end();
+//   })
+// };
+// module.exports.queryAdd = queryAdd;
 module.exports.queryRead = queryRead;

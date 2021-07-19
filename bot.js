@@ -13,14 +13,14 @@ bot.on("polling_error", console.log);
 
 bot.onText(/\/start/, (msg) => {
 
-  console.log(msg);
+  console.log(groups);
   
   });
 bot.on("message", function (message) {
-  if(!groups.includes(message.chat.title)){
-      db.queryAdd(message.chat.title)
-      groups = db.queryRead();
-  }
+  // if(!groups.includes(message.chat.title)){
+  //     db.queryAdd(message.chat.title)
+  //     groups = db.queryRead();
+  // }
   if (message.new_chat_members != undefined) {
     if (!message.new_chat_member.is_bot) {
       if (message.new_chat_member.last_name)
