@@ -24,7 +24,7 @@ client.query('SELECT * From groups;', (err, res) => {
     client.end();
   })
 };
-async function queryAdd(val){
+ function queryAdd(val){
   client.query(`INSERT INTO groups(name) VALUES(${val})`,(err,res)=>{
     if(err) throw err;
     console.log('new group added');
