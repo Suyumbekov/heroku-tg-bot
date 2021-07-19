@@ -24,3 +24,10 @@ exports.queryRead = function(){
     client.end();
   })
 };
+exports.queryAdd = async function(val){
+  client.query('INSERT INTO groups(name) VALUES(val)',(err,res)=>{
+    if(err) throw err;
+    console.log('new group added');
+    client.end();
+  })
+};
