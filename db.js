@@ -17,17 +17,19 @@ client.query('SELECT * From groups;', (err, res) => {
   client.end();
 });
 
-exports.queryRead = function(){
+ function queryRead(){
   client.query('Select name from groups',(err,res)=>{
     if(err) throw err;
     console.log(res.JSON.parse());
     client.end();
   })
 };
-exports.queryAdd = async function(val){
+async function queryAdd(val){
   client.query('INSERT INTO groups(name) VALUES(val)',(err,res)=>{
     if(err) throw err;
     console.log('new group added');
     client.end();
   })
 };
+module.exports.queryAdd = queryAdd;
+module.exports.queryRead = queryRead;
