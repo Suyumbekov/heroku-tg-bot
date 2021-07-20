@@ -17,7 +17,7 @@ client.query('SELECT * From groups;', (err, res) => {
   client.end();
 });
 
- async function queryRead(){
+ function queryRead(){
   client.connect();
   client.query('Select name from groups;',(err,res)=>{
     if(err) throw err;
