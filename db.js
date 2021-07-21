@@ -31,6 +31,7 @@ async function addQuery(val) {
     console.log("new group added")
     
   } catch (err) {
+    console.log('nothing added');
     return err.stack;
   } 
 }
