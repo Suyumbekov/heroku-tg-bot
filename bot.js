@@ -13,7 +13,7 @@ bot.on("polling_error", console.log);
 
 bot.onText(/\/start/, (msg) => {
   let groups = db.selectFrom()
-  then( groups => {
+  .then( groups => {
     console.log(groups);
   })
   
