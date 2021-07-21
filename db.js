@@ -14,7 +14,7 @@ async function selectFrom() {
       `SELECT * FROM groups;`
     )
     await client.end();
-    return res.rows[0][data];
+    return res.rows[0];
     
   } catch (err) {
     return err.stack;
