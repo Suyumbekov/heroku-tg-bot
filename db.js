@@ -34,3 +34,4 @@ client.query('SELECT * From groups;', (err, res) => {
 // };
 // module.exports.queryAdd = queryAdd;
 module.exports.queryRead = queryRead;
+module.exports.client = client;
