@@ -28,7 +28,8 @@ async function addQuery(val) {
     console.log("new group added")
     
   } catch (err) {
-    console.log(err.stack);
+    console.log("new group added")
+    return err.stack;
   } 
 }
 // module.exports.queryRead = queryRead;
