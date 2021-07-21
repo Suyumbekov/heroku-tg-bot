@@ -19,9 +19,12 @@ client.query('SELECT * From groups;', (err, res) => {
 
  function queryRead(){
   client.connect();
-  client.query('Select name from groups;',(err,res)=>{
+  return client.query('Select name from groups;',(err,res)=>{
     if(err) throw err;
-    console.log(res.JSON.parse());
+    for (let row of res.rows) {
+      console.log(JSON.stringify(row));
+    }
+    res.JSON.parse();
     client.end(); 
   })
 };
