@@ -10,7 +10,7 @@ const client = new Client({
 async function readQuery() {
   try {
     await client.connect();
-      const res = await client.query(
+      let res = await client.query(
       `SELECT * FROM groups;`
     )
     await client.end();
@@ -24,7 +24,7 @@ async function readQuery() {
 async function addQuery(val) {
   try {
     await client.connect();
-      const res = await client.query(
+      let res = await client.query(
       `INSERT INTO groups(name) values($1)`,[val]
     )
     await client.end();
