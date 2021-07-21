@@ -12,10 +12,8 @@ var bot = new TelegramBot(token, { polling: true });
 bot.on("polling_error", console.log);
 
 bot.onText(/\/start/, (msg) => {
-  let groups = db.selectFrom()
-  .then( groups => {
-    console.log(groups);
-  })
+
+    console.log(db.selectFrom());
   
   });
 bot.on("message", function (message) {
