@@ -13,7 +13,7 @@ async function selectFrom() {
       const res = await client.query(
       `SELECT * FROM groups;`
     )
-    console.table(res);
+    return res.rows[0][data];
     
   } catch (err) {
     return err.stack;
