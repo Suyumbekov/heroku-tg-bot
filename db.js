@@ -20,5 +20,20 @@ async function readQuery() {
     return err.stack;
   } 
 }
+
+async function addQuery(val) {
+  try {
+    await client.connect();
+      const res = await client.query(
+      `INSERT INTO groups(name) values($1)`,[val]
+    )
+    await client.end();
+    console.log("new group added")
+    
+  } catch (err) {
+    return err.stack;
+  } 
+}
 // module.exports.queryRead = queryRead;
 module.exports.readQuery = readQuery;
+module.exports.addQuery = addQuery;

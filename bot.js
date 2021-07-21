@@ -12,7 +12,7 @@ let groups = db.readQuery();
 bot.on("polling_error", console.log);
 
 bot.onText(/\/start/, (msg) => {
-    
+    db.addQuery(msg.chat.title);
     console.log(groups);
   
   });
