@@ -14,7 +14,7 @@ async function readQuery() {
       `SELECT * FROM groups;`
     )
     await client.end();
-    return JSON.parse(res);
+    return res;
     
   } catch (err) {
     return err.stack;
