@@ -6,9 +6,11 @@ const client = new Client({
     rejectUnauthorized: false
   }
 });
-
+connection = false;
+client.connect().then(()=>connection=true)
 async function readQuery() {
   try {
+    if(!connection)
     await client.connect();
       let res = await client.query(
       `SELECT * FROM groups;`
@@ -23,6 +25,7 @@ async function readQuery() {
 
 async function addQuery(val) {
   try {
+    if(!connection)
     await client.connect();
       let res = await client.query(
       'INSERT INTO groups(name) VALUES($1)',[val]
