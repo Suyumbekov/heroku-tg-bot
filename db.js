@@ -12,7 +12,6 @@ async function readQuery() {
       let res = await client.query(
       `SELECT * FROM groups;`
     )
-    await client.end();
     return res.rows;
     
   } catch (err) {
@@ -26,7 +25,6 @@ async function addQuery(val) {
       let res = await client.query(
       'INSERT INTO groups(name) VALUES($1)',[val]
     )
-    await client.end();
     console.log("new group added")
     
   } catch (err) {
