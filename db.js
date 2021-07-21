@@ -14,16 +14,22 @@ client.query('SELECT * From groups;', (err, res) => {
   for (let row of res.rows) {
     console.log(JSON.stringify(row));
   }
+  client.end();
 });
 
 async function selectFrom() {
   try {
+    client.connect()
+    .then(() =>{
     const res = await client.query(
       `SELECT * FROM groups;`
-    );
+    )
     return res.rows[0][data];
+    })
   } catch (err) {
     return err.stack;
+  } finally{
+    client.end();
   }
 }
 // module.exports.queryRead = queryRead;
