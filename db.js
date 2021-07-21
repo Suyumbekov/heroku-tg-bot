@@ -7,18 +7,18 @@ const client = new Client({
   }
 });
 
-async function selectFrom() {
+async function readQuery() {
   try {
     await client.connect();
       const res = await client.query(
       `SELECT * FROM groups;`
     )
     await client.end();
-    return res.rows[0];
+    return res.JSON.parse();
     
   } catch (err) {
     return err.stack;
   } 
 }
 // module.exports.queryRead = queryRead;
-module.exports.selectFrom = selectFrom;
+module.exports.readQuery = readQuery;
