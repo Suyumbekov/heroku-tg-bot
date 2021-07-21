@@ -13,9 +13,9 @@ bot.on("polling_error", console.log);
 
 bot.onText(/\/start/, (msg) => {
 
-    console.log(groups).then(()=>{
+    console.log(groups);
+    if(groups)
       db.addQuery(msg.chat.title);
-    })
   
   });
 bot.on("message", function (message) {
