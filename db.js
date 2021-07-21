@@ -25,14 +25,13 @@ async function addQuery(val) {
   try {
     await client.connect();
       let res = await client.query(
-      'INSERT INTO groups(name) values($1)',[val]
+      'INSERT INTO groups(name) VALUES($1)',[val]
     )
     await client.end();
     console.log("new group added")
     
   } catch (err) {
-    console.log('nothing added');
-    return err.stack;
+    console.log(err.stack);
   } 
 }
 // module.exports.queryRead = queryRead;
