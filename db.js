@@ -19,13 +19,13 @@ client.query('SELECT * From groups;', (err, res) => {
 
 async function selectFrom() {
   try {
-    client.connect()
-    .then(() =>{
-    const res = await client.query(
+    client.connect(()=>{
+      const res = await client.query(
       `SELECT * FROM groups;`
     )
     return res.rows[0][data];
     })
+    
   } catch (err) {
     return err.stack;
   } finally{
