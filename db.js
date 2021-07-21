@@ -6,7 +6,7 @@ const client = new Client({
     rejectUnauthorized: false
   }
 });
-connection = false;
+let connection = false;
 client.connect().then(()=>connection=true)
 async function readQuery() {
   try {
