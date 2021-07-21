@@ -9,32 +9,23 @@ const client = new Client({
 
 client.connect();
 
-client.query('SELECT * From groups;', (err, res) => {
-  if (err) throw err;
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
-  }
-  client.end();
-});
+// client.query('SELECT * From groups;', (err, res) => {
+//   if (err) throw err;
+//   for (let row of res.rows) {
+//     console.log(JSON.stringify(row));
+//   }
+//   client.end();
+// });
 
- function queryRead(){
-  client.connect();
-  return client.query('Select name from groups;',(err,res)=>{
-    if(err) throw err;
-    for (let row of res.rows) {
-      console.log(JSON.stringify(row));
-    }
-    res.JSON.parse();
-    client.end(); 
-  })
-};
-//  function queryAdd(val){
-//   client.query(`INSERT INTO groups(name) VALUES(${val})`,(err,res)=>{
-//     if(err) throw err;
-//     console.log('new group added');
-//     client.end();
-//   })
-// };
-// module.exports.queryAdd = queryAdd;
-module.exports.queryRead = queryRead;
-module.exports.client = client;
+async function selectFrom() {
+  try {
+    const res = await client.query(
+      `SELECT name FROM groups;`
+    );
+    return res.rows[0][data];
+  } catch (err) {
+    return err.stack;
+  }
+}
+// module.exports.queryRead = queryRead;
+module.exports.selectFrom = selectFrom;
