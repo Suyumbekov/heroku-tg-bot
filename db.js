@@ -19,9 +19,8 @@ client.query('SELECT * From groups;', (err, res) => {
 
 async function selectFrom() {
   try {
-    client.connect();
     const res = await client.query(
-      `SELECT name FROM groups;`
+      `SELECT * FROM groups;`
     );
     return res.rows[0][data];
   } catch (err) {
