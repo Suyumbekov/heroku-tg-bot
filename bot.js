@@ -19,7 +19,7 @@ bot.onText(/\/start/, (msg) => {
     console.log(msg);
     if(msg.chat.title && !groups.includes(msg.chat.title)){
       db.addQuery(msg.chat.title);
-      groups = db.readQuery();
+      groups.append(msg.chat.title);
     }
       
   
