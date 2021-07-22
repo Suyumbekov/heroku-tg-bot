@@ -15,9 +15,7 @@ bot.onText(/\/start/, (msg) => {
 
     console.log(groups);
     console.log(msg);
-    setTimeout(()=>{
-      db.addQuery(msg.chat.title);
-    },2000)
+    db.addQuery(msg.chat.title);
       
   
   });
