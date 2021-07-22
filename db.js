@@ -10,7 +10,7 @@ async function readQuery() {
   try {
     await client.connect();
       let res = await client.query(
-      `SELECT * FROM groups;`
+      `SELECT name FROM groups;`
     )
     return res.rows;
     
