@@ -12,7 +12,7 @@ async function readQuery() {
       let res = await client.query(
       `SELECT name FROM groups;`
     )
-    return res.rows;
+    return res.rows.name;
     
   } catch (err) {
     return err.stack;
