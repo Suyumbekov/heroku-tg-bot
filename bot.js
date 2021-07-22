@@ -16,9 +16,13 @@ bot.on("polling_error", console.log);
 bot.onText(/\/start/, (msg) => {
 
     console.log(groups);
-    if(msg.chat.title && !groups.includes({name: msg.chat.title})){
-      db.addQuery(msg.chat.title);
-      groups.push(msg.chat.title);
+    if(msg.chat.title){
+      groups.find(function(elem){
+        if(elem.name != msg.chat.title)
+        db.addQuery(msg.chat.title);
+        groups.push(msg.chat.title);
+      })
+      
     }
       
   
