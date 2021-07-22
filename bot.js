@@ -7,21 +7,16 @@ var token = "1569313818:AAHm65XxYkgWDWipQMt0mf6VDUp4PZLICY4";
 // Включить опрос сервера. Бот должен обращаться к серверу Telegram, чтобы получать актуальную информацию
 // Подробнее: https://core.telegram.org/bots/api#getupdates
 var bot = new TelegramBot(token, { polling: true });
-let temp = [];
 let groups = [];
-temp = db.readQuery().then(() => {
-  temp.forEach(val =>{
-  groups.push(val.name);
-});
-})
+groups = db.readQuery();
 
-console.log(temp);
+
 bot.on("polling_error", console.log);
 
 bot.onText(/\/start/, (msg) => {
 
     console.log(groups);
-    if(msg.chat.title && !groups.includes(msg.chat.title)){
+    if(msg.chat.title && !groups.includes({name: msg.chat.title})){
       db.addQuery(msg.chat.title);
       groups.push(msg.chat.title);
     }
