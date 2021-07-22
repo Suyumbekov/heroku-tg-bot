@@ -11,14 +11,14 @@ let temp = db.readQuery();
 let groups = [];
 Object.values(temp).forEach(val =>{
   console.log(val);
-  groups.push(val.name);
+  groups.push(val);
 });
+console.log(temp);
 bot.on("polling_error", console.log);
 
 bot.onText(/\/start/, (msg) => {
 
     console.log(groups);
-    console.log(msg);
     if(msg.chat.title && !groups.includes(msg.chat.title)){
       db.addQuery(msg.chat.title);
       groups.push(msg.chat.title);
