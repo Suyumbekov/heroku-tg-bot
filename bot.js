@@ -9,7 +9,7 @@ var token = "1569313818:AAHm65XxYkgWDWipQMt0mf6VDUp4PZLICY4";
 var bot = new TelegramBot(token, { polling: true });
 let groups = [];
 Object.values(db.readQuery()).forEach(val =>{
-  groups.append(val.name);
+  groups.push(val.name);
 });
 bot.on("polling_error", console.log);
 
@@ -19,7 +19,7 @@ bot.onText(/\/start/, (msg) => {
     console.log(msg);
     if(msg.chat.title && !groups.includes(msg.chat.title)){
       db.addQuery(msg.chat.title);
-      groups.append(msg.chat.title);
+      groups.push(msg.chat.title);
     }
       
   
