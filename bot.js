@@ -32,7 +32,7 @@ bot.onText(/\/start/, (msg) => {
   });
 bot.on("message", function (message) {
   if(message.chat.title){
-    if(!elem[message.chat.title]){
+    if(!groups[message.chat.title]){
      db.add(message.chat.title);
      groups[message.chat.title]=null;
     }
