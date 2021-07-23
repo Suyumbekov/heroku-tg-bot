@@ -20,7 +20,7 @@ bot.onText(/\/start/, (msg) => {
       groups.find(function(elem){
         if(elem.name != msg.chat.title)
         db.addQuery(msg.chat.title);
-        groups.push(msg.chat.title);
+        groups.push({name:msg.chat.title});
       })
       
     }
