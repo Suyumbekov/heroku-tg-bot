@@ -37,7 +37,7 @@ async function setText(name,val) {
   try {
     await client.connect();
       let res = await client.query(
-      'UPDATE TABLE groups set message =$1 WHERE name = $2',[val,name]
+      'UPDATE groups set message =$1 WHERE name = $2',[val,name]
     )
     console.log("welcome message added")
     
