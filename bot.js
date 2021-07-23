@@ -26,6 +26,7 @@ bot.onText(/\/start/, (msg) => {
     const resp = match[1];
     if(msg.chat.title){
     db.setText(msg.chat.title,resp);
+    groups[msg.chat.title]=resp;
     bot.sendMessage(msg.chat.id, `<strong>Приветствие успешно записано</strong>`,{ parse_mode: "HTML" });
     } else
     bot.sendMessage(msg.chat.id, "Команда не можеть быть использованна\nв личных чатах");
