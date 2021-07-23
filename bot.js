@@ -10,7 +10,7 @@ var bot = new TelegramBot(token, { polling: true });
 let groups = [];
 db.readQuery().then((obj)=>{
   obj.forEach(elem => {
-    groups.push(elem);
+    groups.push(elem.name);
   });
 })
 
@@ -20,7 +20,6 @@ bot.on("polling_error", console.log);
 bot.onText(/\/start/, (msg) => {
 
     console.log(groups);
-    console.log(groups[0]);
     if(msg.chat.title){
      let flag = groups.find(function(elem){
         if(elem.name == msg.chat.title)
