@@ -8,7 +8,11 @@ var token = "1569313818:AAHm65XxYkgWDWipQMt0mf6VDUp4PZLICY4";
 // Подробнее: https://core.telegram.org/bots/api#getupdates
 var bot = new TelegramBot(token, { polling: true });
 let groups = [];
-groups=db.readQuery();
+db.readQuery().then((obj)=>{
+  obj.forEach(elem => {
+    groups.push(elem);
+  });
+})
 
 
 bot.on("polling_error", console.log);
@@ -21,7 +25,7 @@ bot.onText(/\/start/, (msg) => {
       groups.find(function(elem){
         if(elem.name != msg.chat.title)
         db.addQuery(msg.chat.title);
-        groups[0].push({name:msg.chat.title});
+        groups.push({name:msg.chat.title});
       })
       
     }
