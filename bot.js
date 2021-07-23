@@ -21,15 +21,15 @@ bot.onText(/\/start/, (msg) => {
     bot.sendMessage(msg.chat.id, `Бот будет пртветстовать всех \nвходящих в групповые чаты \nзаданным текстом.\nДля установки текста \nприветствия используйте \n<a>/setText</a> ваш_текст`,{ parse_mode: "HTML" })
   });
 bot.on("message", function (message) {
-  if(msg.chat.title){
+  if(message.chat.title){
     let flag = groups.find(function(elem){
-       if(elem == msg.chat.title)
+       if(elem == message.chat.title)
        return true;
      })
 
     if(!flag){
-     db.add(msg.chat.title);
-     groups.push(msg.chat.title);
+     db.add(message.chat.title);
+     groups.push(message.chat.title);
     }
      
    }
