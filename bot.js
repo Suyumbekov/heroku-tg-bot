@@ -18,7 +18,19 @@ db.read().then((obj)=>{
 bot.on("polling_error", console.log);
 
 bot.onText(/\/start/, (msg) => {    
-    bot.sendMessage(msg.chat.id, `Бот будет пртветстовать всех \nвходящих в групповые чаты \nзаданным текстом.\nДля установки текста \nприветствия используйте \n<a>/settext</a> ваш_текст`,{ parse_mode: "HTML" })
+    bot.sendMessage(msg.chat.id, `Бот будет пртветстовать всех \nвходящих в групповые чаты \nзаданным текстом.\nДля установки текста \nприветствия используйте \n<a>/settext</a> ваш_текст\n\nДля справки <a>/help</a>\n<a>/cmd</a> - основные команды`,{ parse_mode: "HTML" })
+  });
+  bot.onText(/\/сmd/, (msg) => {    
+    bot.sendMessage(msg.chat.id, `Список всех команд:\n<a>/settext</a>\n<a>/help</a>\n<a>/text</a>`,{ parse_mode: "HTML" })
+  });
+  bot.onText(/\/help/, (msg) => {    
+    bot.sendMessage(msg.chat.id, `Бот будет приветствовать вошедших\nЗаданным текстом.\nПосмотреть записанный текст <a>/text</a>\n\nДля установки текста <a>/settext</a> text\nКраткий список всех команд:\n<a>/settext</a>\n<a>/help</a>\n<a>/text</a>`,{ parse_mode: "HTML" })
+  });
+  bot.onText(/\/text/, (msg) => {    
+    if(msg.chat.title)
+    bot.sendMessage(msg.chat.id, `Приветствие этого чата:\n${groups[msg.chat.title]}`);
+    else
+    bot.sendMessage(msg.chat.id, "Команда не можеть быть использованна\nв личных чатах");
   });
   bot.onText(/\/settext (.+)/, (msg, match) => {  
     const resp = match[1];
