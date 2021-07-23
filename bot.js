@@ -32,19 +32,14 @@ bot.onText(/\/start/, (msg) => {
   });
 bot.on("message", function (message) {
   if(message.chat.title){
-    let flag = groups.find(function(elem){
-       if(elem == message.chat.title)
-       return true;
-     })
-
-    if(!flag){
+    if(!elem[message.chat.title]){
      db.add(message.chat.title);
-     groups.push(message.chat.title);
+     groups[message.chat.title]=null;
     }
      
    }
   if (message.new_chat_members != undefined) {
-    if (!message.new_chat_member.is_bot) {
+    if (!message.new_chat_member.is_bot && groups[message.chat.title]) {
       if (message.new_chat_member.last_name)
         bot.sendMessage(
           message.chat.id,
