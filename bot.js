@@ -17,10 +17,8 @@ db.read().then((obj)=>{
 
 bot.on("polling_error", console.log);
 
-bot.onText(/\/start/, (msg) => {  
-    console.log(groups);    
+bot.onText(/\/start/, (msg) => {    
     bot.sendMessage(msg.chat.id, `Бот будет пртветстовать всех \nвходящих в групповые чаты \nзаданным текстом.\nДля установки текста \nприветствия используйте \n<a>/settext</a> ваш_текст`,{ parse_mode: "HTML" })
-    bot.sendMessage(msg.chat.id,groups[msg.chat.title]);
   });
   bot.onText(/\/settext (.+)/, (msg, match) => {  
     const resp = match[1];
@@ -44,13 +42,13 @@ bot.on("message", function (message) {
       if (message.new_chat_member.last_name)
         bot.sendMessage(
           message.chat.id,
-          `<b>Добро пожаловать в чат "${message.chat.title}"</b>\n${message.new_chat_member.first_name} ${message.new_chat_member.last_name}.\nСиздин Бактылуу Инсан каналына кошулганыңызга кубанычтабыз😌! Бул группадан пайдалуу маалыматтарды аласыз деп ишенебиз! Сиз да маалыматтар менен бөлүшүп, сиз билген иш чаралар боюнча башкалардын да кабардар болушуна себепчи болуңуз🤗.`,
+          `<b>Добро пожаловать в чат "${message.chat.title}"</b>\n${message.new_chat_member.first_name} ${message.new_chat_member.last_name}.\n${groups[message.chat.title]}`,
           { parse_mode: "HTML" }
         );
       else
         bot.sendMessage(
           message.chat.id,
-          `<b>Добро пожаловать в чат "${message.chat.title}"</b>\n${message.new_chat_member.first_name} .\nСиздин Бактылуу Инсан каналына кошулганыңызга кубанычтабыз😌! Бул группадан пайдалуу маалыматтарды аласыз деп ишенебиз! Сиз да маалыматтар менен бөлүшүп, сиз билген иш чаралар боюнча башкалардын да кабардар болушуна себепчи болуңуз🤗.`,
+          `<b>Добро пожаловать в чат "${message.chat.title}"</b>\n${message.new_chat_member.first_name} .\n${groups[message.chat.title]}`,
           { parse_mode: "HTML" }
         );
     }
