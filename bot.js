@@ -22,12 +22,15 @@ bot.onText(/\/start/, (msg) => {
     console.log(groups);
     console.log(groups[0]);
     if(msg.chat.title){
-      groups.find(function(elem){
-        if(elem.name != msg.chat.title)
-        db.addQuery(msg.chat.title);
-        groups.push({name:msg.chat.title});
-        return 1;
+     let flag = groups.find(function(elem){
+        if(elem.name == msg.chat.title)
+        return true;
       })
+
+     if(!flag){
+      db.addQuery(msg.chat.title);
+      groups.push({name:msg.chat.title});
+     }
       
     }
       
