@@ -8,7 +8,7 @@ var token = "1569313818:AAHm65XxYkgWDWipQMt0mf6VDUp4PZLICY4";
 // Подробнее: https://core.telegram.org/bots/api#getupdates
 var bot = new TelegramBot(token, { polling: true });
 let groups = [];
-groups = db.readQuery();
+groups.push(b.readQuery());
 
 
 bot.on("polling_error", console.log);
