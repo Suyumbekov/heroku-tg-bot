@@ -6,7 +6,7 @@ const client = new Pool({
     rejectUnauthorized: false
   }
 });
-async function readQuery() {
+async function read() {
   try {
     await client.connect();
       let res = await client.query(
@@ -19,7 +19,7 @@ async function readQuery() {
   } 
 }
 
-async function addQuery(val) {
+async function add(val) {
   try {
     await client.connect();
       let res = await client.query(
@@ -28,10 +28,10 @@ async function addQuery(val) {
     console.log("new group added")
     
   } catch (err) {
-    console.log('nothin added');
+    console.log('nothing added');
     return err.stack;
   } 
 }
 // module.exports.queryRead = queryRead;
-module.exports.readQuery = readQuery;
-module.exports.addQuery = addQuery;
+module.exports.read = read;
+module.exports.add = add;

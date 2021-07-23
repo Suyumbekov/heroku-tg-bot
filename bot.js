@@ -17,29 +17,22 @@ db.readQuery().then((obj)=>{
 
 bot.on("polling_error", console.log);
 
-bot.onText(/\/start/, (msg) => {
-
-    console.log(groups);
-    if(msg.chat.title){
-     let flag = groups.find(function(elem){
-        if(elem == msg.chat.title)
-        return true;
-      })
-
-     if(!flag){
-      db.addQuery(msg.chat.title);
-      groups.push(msg.chat.title);
-     }
-      
-    }
-      
-  
+bot.onText(/\/start/, (msg) => {      
+    bot.sendMessage(msg.chat.id, `Бот будет пртветстовать всех \nвходящих в групповые чаты \nзаданным текстом.\nДля установки текста \nприветствия используйте \n${<a>/setText</a>} ваш_текст`,{ parse_mode: "HTML" })
   });
 bot.on("message", function (message) {
-  // if(!groups.includes(message.chat.title)){
-  //     db.queryAdd(message.chat.title)
-  //     groups = db.queryRead();
-  // }
+  if(msg.chat.title){
+    let flag = groups.find(function(elem){
+       if(elem == msg.chat.title)
+       return true;
+     })
+
+    if(!flag){
+     db.addQuery(msg.chat.title);
+     groups.push(msg.chat.title);
+    }
+     
+   }
   if (message.new_chat_members != undefined) {
     if (!message.new_chat_member.is_bot) {
       if (message.new_chat_member.last_name)
