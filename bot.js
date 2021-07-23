@@ -22,7 +22,6 @@ bot.onText(/\/start/, (msg) => {
   });
   bot.onText(/\/setText (.+)/, (msg, match) => {  
     const resp = match[1];
-    console.log(msg);
     if(msg.chat.title){
     db.setText(msg.chat.title,resp);
     bot.sendMessage(msg.chat.id, `<strong>Приветствие успешно записано</strong>`,{ parse_mode: "HTML" });

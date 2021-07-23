@@ -37,12 +37,12 @@ async function setText(name,val) {
   try {
     await client.connect();
       let res = await client.query(
-      'INSERT INTO groups(message) VALUES($1) WHERE name = $2',[val,name]
+      'UPDATE TABLE groups set message =$1 WHERE name = $2',[val,name]
     )
     console.log("welcome message added")
     
   } catch (err) {
-    console.log('nothing added');
+    console.log(err.stack);
     return err.stack;
   } 
 }
