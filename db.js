@@ -30,7 +30,7 @@ async function addQuery(val) {
     client.end();
     
   } catch (err) {
-    console.log("nothing added")
+    console.log(err.stack);
     return err.stack;
   } 
 }
