@@ -10,7 +10,7 @@ var bot = new TelegramBot(token, { polling: true });
 let groups = [];
 db.read().then((obj)=>{
   obj.forEach(elem => {
-    groups.push(elem.name,elem.message);
+    groups.push({name:elem.name,message:elem.message});
   });
 })
 
@@ -20,6 +20,7 @@ bot.on("polling_error", console.log);
 bot.onText(/\/start/, (msg) => {  
     console.log(groups);    
     bot.sendMessage(msg.chat.id, `Бот будет пртветстовать всех \nвходящих в групповые чаты \nзаданным текстом.\nДля установки текста \nприветствия используйте \n<a>/settext</a> ваш_текст`,{ parse_mode: "HTML" })
+    bot.sendMessage(msg.chat.id,groups[groups.indexOf({name:msg.chat.title})].message);
   });
   bot.onText(/\/settext (.+)/, (msg, match) => {  
     const resp = match[1];
