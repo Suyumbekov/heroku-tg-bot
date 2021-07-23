@@ -32,6 +32,21 @@ async function add(val) {
     return err.stack;
   } 
 }
+
+async function setText(name,val) {
+  try {
+    await client.connect();
+      let res = await client.query(
+      'INSERT INTO groups(message) VALUES($1) WHERE name = $2',[val,name]
+    )
+    console.log("welcome message added")
+    
+  } catch (err) {
+    console.log('nothing added');
+    return err.stack;
+  } 
+}
 // module.exports.queryRead = queryRead;
 module.exports.read = read;
 module.exports.add = add;
+module.exports.setText = setText;

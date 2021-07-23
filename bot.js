@@ -18,12 +18,16 @@ db.read().then((obj)=>{
 bot.on("polling_error", console.log);
 
 bot.onText(/\/start/, (msg) => {      
-    bot.sendMessage(msg.chat.id, `Бот будет пртветстовать всех \nвходящих в групповые чаты \nзаданным текстом.\nДля установки текста \nприветствия используйте \n<a>/setText</a> ваш_текст`,{ parse_mode: "HTML" })
+    bot.sendMessage(msg.chat.id, `Бот будет пртветстовать всех \nвходящих в групповые чаты \nзаданным текстом.\nДля установки текста \nприветствия используйте \n<a>/settext</a> ваш_текст`,{ parse_mode: "HTML" })
   });
   bot.onText(/\/setText (.+)/, (msg, match) => {  
     const resp = match[1];
-    console.log(match);
-    bot.sendMessage(msg.chat.id, resp);
+    console.log(msg);
+    if(msg.chat.title){
+    db.setText(msg.chat.title,resp);
+    bot.sendMessage(msg.chat.id, `<strong>Приветствие успешно записано</strong>`,{ parse_mode: "HTML" });
+    } else
+    bot.sendMessage(msg.chat.id, "Команда не можеть быть использованна\nв личных чатах");
   });
 bot.on("message", function (message) {
   if(message.chat.title){
