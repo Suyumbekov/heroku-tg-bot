@@ -26,6 +26,7 @@ bot.onText(/\/start/, (msg) => {
         if(elem.name != msg.chat.title)
         db.addQuery(msg.chat.title);
         groups.push({name:msg.chat.title});
+        return 1;
       })
       
     }
