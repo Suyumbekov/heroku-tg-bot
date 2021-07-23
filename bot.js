@@ -10,7 +10,7 @@ var bot = new TelegramBot(token, { polling: true });
 let groups = [];
 db.read().then((obj)=>{
   obj.forEach(elem => {
-    groups[elem.name].push(elem.message);
+    groups[elem.name]=elem.message;
   });
 })
 
