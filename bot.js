@@ -10,14 +10,15 @@ var bot = new TelegramBot(token, { polling: true });
 let groups = [];
 db.read().then((obj)=>{
   obj.forEach(elem => {
-    groups.push(elem.name);
+    groups.push(elem.name,elem.message);
   });
 })
 
 
 bot.on("polling_error", console.log);
 
-bot.onText(/\/start/, (msg) => {      
+bot.onText(/\/start/, (msg) => {  
+    console.log(groups);    
     bot.sendMessage(msg.chat.id, `Бот будет пртветстовать всех \nвходящих в групповые чаты \nзаданным текстом.\nДля установки текста \nприветствия используйте \n<a>/settext</a> ваш_текст`,{ parse_mode: "HTML" })
   });
   bot.onText(/\/settext (.+)/, (msg, match) => {  
