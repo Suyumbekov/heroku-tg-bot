@@ -18,7 +18,7 @@ db.readQuery().then((obj)=>{
 bot.on("polling_error", console.log);
 
 bot.onText(/\/start/, (msg) => {      
-    bot.sendMessage(msg.chat.id, `Бот будет пртветстовать всех \nвходящих в групповые чаты \nзаданным текстом.\nДля установки текста \nприветствия используйте \n${<a>/setText</a>} ваш_текст`,{ parse_mode: "HTML" })
+    bot.sendMessage(msg.chat.id, `Бот будет пртветстовать всех \nвходящих в групповые чаты \nзаданным текстом.\nДля установки текста \nприветствия используйте \n<a>/setText</a> ваш_текст`,{ parse_mode: "HTML" })
   });
 bot.on("message", function (message) {
   if(msg.chat.title){
