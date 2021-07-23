@@ -16,6 +16,7 @@ bot.on("polling_error", console.log);
 bot.onText(/\/start/, (msg) => {
 
     console.log(groups);
+    console.log(groups[0].name);
     if(msg.chat.title){
       groups.find(function(elem){
         if(elem.name != msg.chat.title)
