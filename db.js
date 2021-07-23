@@ -12,7 +12,11 @@ async function readQuery() {
       let res = await client.query(
       `SELECT name FROM groups;`
     )
-    return res.rows;
+    let arr =[];
+    res.rows.forEach(elem => {
+      arr.push(elem);
+    })
+    return arr;
     
   } catch (err) {
     return err.stack;
